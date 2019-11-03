@@ -1,0 +1,14 @@
+Wood 6
+Stone 2
+Coal 6
+Iron 4
+Komputer 0
+Plane 0
+Zoobium 0
+Wood 4
+Stone 0
+Coal 2
+Iron 0
+Komputer 1
+Plane 4
+Zoobium 0
