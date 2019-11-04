@@ -28,23 +28,31 @@ K = 0
 P = 0
 Z = 0
 
-# Function which determines if there are sufficient commodities for Market1 to make a resource
-def Market1_buy(x,y):
+# Function which determines if there are sufficient commodities
+# for Market1 to make a Komputer resource
+def Market1_buy():
+  global W, S, K
+# Market 1 tries to turn commodities into resources until it can't
+  while W >= 2 and S >= 2:
     print("Market1 buys Komputer!")
-    global W, S, K
     W = W - Market1.wood
     S = S - Market1.stone
     K = K + 1
+  else:
+    print("Not enough resources for Market 1!")
 
-# Function which determines if there are sufficient commodities for Market2 to make a resource
-def Market2_buy(x,y):
+# Function which determines if there are sufficient commodities
+# for Market2 to make a Plane resource
+def Market2_buy():
+  global C, I, P
+# Market 1 tries to turn commodities into resources until it can't
+  while C >= 1 and I >= 1:
     print("Market2 buys Plane!")
-    global C, I, P
     C = C - Market2.coal
     I = I - Market2.iron
     P = P + 1
-
-
+  else:
+    print("Not enough resources for Market 2!")
 
 
 
@@ -61,28 +69,34 @@ f.write("Plane " '{:01d}\n'.format(P))
 f.write("Zoobium " '{:01d}\n'.format(Z))
 f.close()
 
-# Market 1 tries to turn commodities into resources until it can't
-while W >= 2 and S >= 2:
-  Market1_buy(W,S)
-else:
-  print("Not enough resources for Market 1!")
 
-# Market 2 tries to turn commodities into resources until it can't
-while C >= 1 and I >= 1:
-  Market2_buy(C,I)
-else:
-  print("Not enough resources for Market 2!")
+# Ask for number of iterations
+print("How many iterations?")
+iterations = int(input())
+
+i = 1
+while i <= iterations:
+  print(i)
+  # Markets buy what they can
+  Market1_buy()
+  Market2_buy()
+  # Repopulate commodities by D6
+  W = W + random.randint(1,6)
+  S = S + random.randint(1,6)
+  C = C + random.randint(1,6)
+  I = I + random.randint(1,6)
+  i += 1 
 
 # Print finishing commodities and resources
 #Open file
 f = open("gamestate.txt","a")
 # Print starting commodities and resources
-f.write("Wood " '{:01d}\n'.format(W))
-f.write("Stone " '{:01d}\n'.format(S))
-f.write("Coal " '{:01d}\n'.format(C))
-f.write("Iron " '{:01d}\n'.format(I))
-f.write("Komputer " '{:01d}\n'.format(K))
-f.write("Plane " '{:01d}\n'.format(P))
-f.write("Zoobium " '{:01d}\n'.format(Z))
+f.write("Wood2 " '{:01d}\n'.format(W))
+f.write("Stone2 " '{:01d}\n'.format(S))
+f.write("Coal2 " '{:01d}\n'.format(C))
+f.write("Iron2 " '{:01d}\n'.format(I))
+f.write("Komputer2 " '{:01d}\n'.format(K))
+f.write("Plane2 " '{:01d}\n'.format(P))
+f.write("Zoobium2 " '{:01d}\n'.format(Z))
 f.close()
 

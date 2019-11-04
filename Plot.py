@@ -1,19 +1,23 @@
 import plotly.graph_objects as go
+import numpy as np
 #from plotly.graph_objs import Bar, Layout
 
-variable = []
+resources = []
+values = []
 
 #Open data file
 f = open("gamestate.txt","r")
 for line in f:
     a,b = line.strip().split()
-    variable.append(b)
-
+    resources.append(a)
+    b = int(b)
+    values.append(b)
 f.close()
 
+print(values)
+
 fig = go.Figure(
-    data=[go.Bar(x = ['WoodS','StoneS','CoalS','IronS','KomputerS','PlaneS','ZoobiumS','WoodF','StoneF','CoalF','IronF','KomputerF','PlaneF','ZoobiumF'],
-                 y=[variable])],
+    data=[go.Bar(x=resources, y=values)],
     layout_title_text="XXXXX"
 )
 fig.show()
