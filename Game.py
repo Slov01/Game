@@ -1,6 +1,7 @@
 import random
 import plotly
 from plotly.graph_objs import Bar, Layout
+from tabulate import tabulate
 
 # Setup a class to make lots of Markets objects
 # A class is an instruction to make an object
@@ -34,12 +35,12 @@ def Market1_buy():
   global W, S, K
 # Market 1 tries to turn commodities into resources until it can't
   while W >= 2 and S >= 2:
-    print("Market1 buys Komputer!")
+    #print("Market1 buys Komputer!")
     W = W - Market1.wood
     S = S - Market1.stone
     K = K + 1
-  else:
-    print("Not enough resources for Market 1!")
+  #else:
+    #print("Not enough resources for Market 1!")
 
 # Function which determines if there are sufficient commodities
 # for Market2 to make a Plane resource
@@ -47,16 +48,16 @@ def Market2_buy():
   global C, I, P
 # Market 1 tries to turn commodities into resources until it can't
   while C >= 1 and I >= 1:
-    print("Market2 buys Plane!")
+    #print("Market2 buys Plane!")
     C = C - Market2.coal
     I = I - Market2.iron
     P = P + 1
-  else:
-    print("Not enough resources for Market 2!")
+  #else:
+    #print("Not enough resources for Market 2!")
 
 
 
-
+"""
 #Open file
 f = open("gamestate.txt","w+")
 # Print starting commodities and resources
@@ -68,7 +69,7 @@ f.write("Komputer " '{:01d}\n'.format(K))
 f.write("Plane " '{:01d}\n'.format(P))
 f.write("Zoobium " '{:01d}\n'.format(Z))
 f.close()
-
+"""
 
 # Ask for number of iterations
 print("How many iterations?")
@@ -76,7 +77,7 @@ iterations = int(input())
 
 i = 1
 while i <= iterations:
-  print(i)
+  print("Iteration", i)
   # Markets buy what they can
   Market1_buy()
   Market2_buy()
@@ -85,8 +86,13 @@ while i <= iterations:
   S = S + random.randint(1,6)
   C = C + random.randint(1,6)
   I = I + random.randint(1,6)
-  i += 1 
+  i += 1
+  table = [["Wood",W],["Stone",S],["Coal",C],["Iron",I],["Komputer",K],
+           ["Plane",P],["Zoobium",Z]]
+  print(tabulate(table, headers=["Resources","Amount"]))
+  print("")
 
+"""
 # Print finishing commodities and resources
 #Open file
 f = open("gamestate.txt","a")
@@ -99,4 +105,4 @@ f.write("Komputer2 " '{:01d}\n'.format(K))
 f.write("Plane2 " '{:01d}\n'.format(P))
 f.write("Zoobium2 " '{:01d}\n'.format(Z))
 f.close()
-
+"""

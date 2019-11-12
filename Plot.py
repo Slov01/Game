@@ -14,6 +14,7 @@ for line in f:
     values.append(b)
 f.close()
 
+print(resources)
 print(values)
 
 fig = go.Figure(
