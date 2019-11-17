@@ -57,13 +57,14 @@ market1 = market(2, 2, 0, 0, 7, 0, 0, 0)
 def market1_buy():
   global W,S,C,I,K,P,Z,VP
 # market1 tries to turn commodities into resources until it can't
-  rules = [W >= market1.wood,
-           S >= market1.stone,
-           C >= market1.coal,
-           I >= market1.iron]
   while True:
-    #if all(rules):
-    if W >= market1.wood:
+    rules = [W >= market1.wood,
+             S >= market1.stone,
+             C >= market1.coal,
+             I >= market1.iron]
+    print(rules)
+    if all(rules):
+      print("Buy again")
       print(W,S,C,I,K,P,Z,VP)
       W = W - market1.wood
       S = S - market1.stone
@@ -72,11 +73,8 @@ def market1_buy():
       K = K + market1.komputer
       P = P + market1.plane
       Z = Z + market1.zoobium
-      VP = VP + market1.victory
-      print(" Buy again")
-      print("")
+      VP = VP + market1.victory      
     else:
-      print(W,S,C,I,K,P,Z,VP)
       print("Break")
       break
 
